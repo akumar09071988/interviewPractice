@@ -1,0 +1,17 @@
+
+public class StringToInteger {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		
+
+	}
+	
+	static long parseLong(String str)
+	{
+		long num =0;
+		return num;
+	}
+
+}

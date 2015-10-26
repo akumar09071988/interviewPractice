@@ -1,0 +1,34 @@
+import java.util.HashMap;
+
+
+public class StringToInteger {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		
+
+	}
+	
+	static long parseLong(String str)
+	{
+		long parsedNumber =0;
+		int startIndex = 0;
+        boolean isNegative = false;
+        int length = str.length();
+        if( str.charAt(0) == '-' )
+        {
+            isNegative = true;
+            startIndex = 1;
+        }
+        while( startIndex < length )
+        {
+        	parsedNumber *= 10;
+        	parsedNumber += ( str.charAt(startIndex++) - '0' );
+        }
+        if( isNegative )
+        	parsedNumber = -parsedNumber;
+        return parsedNumber;
+	}
+
+}

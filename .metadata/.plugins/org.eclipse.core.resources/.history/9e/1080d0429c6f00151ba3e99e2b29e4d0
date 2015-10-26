@@ -1,0 +1,110 @@
+/* */
+// The following definitions of Tree and Node are provided.
+// insert and delete will be methods of class Tree.
+
+public class Tree {
+    private class Node {
+        private int val;
+        private Node left = null;
+        private Node right = null;
+        private Node mid = null;
+
+        public Node(int val) {
+            this.val = val;
+        }
+    }
+
+    private Node root;
+
+
+    /* 
+     * Please complete this method.
+     * Inserts val into the tree. There is no need to rebalance the tree.
+     */
+    public void insert(int val) {
+        
+        if(root == null)
+        {
+           root = new Node(val);
+           
+        }
+        else
+        {
+            Node currNode = null;
+            Node parentNode = root;
+            if(val==root.val)
+            {
+                 currNode = root.mid;  
+            }
+            else if(val < root.val)
+            {
+                currNode = root.left;
+            }
+            else
+            {
+                currNode = root.right;    
+            }
+            char  lastSide ='m' ;
+            
+            while(currNode !=null)
+            {
+                if(val==currNode.val)
+                {
+                    parentNode = currNode;
+                    currNode = currNode.mid;
+                    lastSide = 'm';
+                }
+                else if(val < root.val)
+                {
+                    parentNode = currNode;
+                    currNode = currNode.left;
+                    lastSide = 'l';
+                }
+                else
+                {
+                    parentNode  = currNode;
+                    currNode = currNode.right;
+                    lastSide = 'r';
+                }
+            }
+            
+            if(lastSide == 'm')
+            {
+                currNode = new Node(val);
+                parentNode.mid = currNode;
+            }
+            else if(lastSide == 'l')
+            {
+               currNode = new Node(val);
+               parentNode.left = new Node(val);
+            }
+            else
+            {
+               currNode = new Node(val);
+               parentNode.right = new Node(val);
+            }
+            
+            
+        }
+
+    }
+
+    /* 
+     * Please complete this method.
+     * Deletes only one instance of val from the tree.
+     * If val does not exist in the tree, do nothing.
+     * There is no need to rebalance the tree.
+     */
+    public void delete(int val) {
+    	if(root != null)
+    	{
+    		Node currNode = root;
+    		while(currNode !=null)
+    		{
+    			
+    		}
+    	}
+           
+    }
+    
+}

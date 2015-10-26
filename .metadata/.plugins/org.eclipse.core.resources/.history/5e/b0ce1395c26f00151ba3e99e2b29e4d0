@@ -1,0 +1,232 @@
+/* */
+// The following definitions of Tree and Node are provided.
+// insert and delete will be methods of class Tree.
+
+public class Tree {
+    private class Node {
+        private int val;
+        private Node left = null;
+        private Node right = null;
+        private Node mid = null;
+
+        public Node(int val) {
+            this.val = val;
+        }
+    }
+
+    private Node root;
+
+
+    /* 
+     * Please complete this method.
+     * Inserts val into the tree. There is no need to rebalance the tree.
+     */
+    public void insert(int val) {
+        
+        if(root == null)
+        {
+           root = new Node(val);
+           
+        }
+        else
+        {
+            Node currNode = root;
+            Node parentNode = null;
+            char  lastSide =' ' ;
+            
+            while(currNode !=null)
+            {
+                if(val==currNode.val)
+                {
+                    parentNode = currNode;
+                    currNode = currNode.mid;
+                    lastSide = 'm';
+                }
+                else if(val < currNode.val)
+                {
+                    parentNode = currNode;
+                    currNode = currNode.left;
+                    lastSide = 'l';
+                }
+                else
+                {
+                    parentNode  = currNode;
+                    currNode = currNode.right;
+                    lastSide = 'r';
+                }
+            }
+            
+            if(lastSide == 'm')
+            {
+                currNode = new Node(val);
+                parentNode.mid = currNode;
+            }
+            else if(lastSide == 'l')
+            {
+               currNode = new Node(val);
+               parentNode.left = new Node(val);
+            }
+            else
+            {
+               currNode = new Node(val);
+               parentNode.right = new Node(val);
+            }
+            
+            
+        }
+
+    }
+    
+    /*
+     * TO find the number of children in a node 
+     */
+    
+    public int getNumofChildren(Node node)
+    {
+    	int numChildren =0;
+    	if(node.left!=null)
+    	{
+    		numChildren ++;
+    	}
+    	if(node.right!= null)
+    	{
+    		numChildren++;
+    	}
+    	if(node.mid!=null)
+    	{
+    		numChildren++;
+    	}
+    	return numChildren;
+    }
+    
+    public Node getSuccessor(Node node)
+    {
+    	Node returnNode = null;
+    	Node currNode = node;
+    	Node parentNode = null;
+    	while(currNode.left!=null)
+    	{
+    		parentNode = currNode;
+    		currNode = currNode.left;
+    	}
+    	
+    	
+		returnNode = currNode;
+		if(currNode.mid!=null)
+		{
+			currNode = currNode.mid;
+		}
+		else
+		{
+			currNode= currNode.right;
+		}
+	
+    	
+    	
+    	return returnNode;
+    }
+
+    /* 
+     * Please complete this method.
+     * Deletes only one instance of val from the tree.
+     * If val does not exist in the tree, do nothing.
+     * There is no need to rebalance the tree.
+     */
+    public void delete(int val) {
+    	System.out.println("delete");
+    	if(root != null)
+    	{
+    		Node currNode = root;
+    		
+    		while(currNode !=null )
+    		{
+    			if(val == currNode.val)
+    			{
+    				//currNode = currNode.mid;
+    				break;
+    			}
+    			else if(val<currNode.val)
+    			{
+    				currNode = currNode.left;
+    			}
+    			else
+    			{
+    				currNode = currNode.right;
+    			}
+    		}
+    		System.out.println("currNode.val" +currNode.val);
+    		if(currNode!=null)
+    		{
+    		   int numChildren = getNumofChildren(currNode); 
+    		   if(numChildren == 0)
+    		   {
+    			   System.out.println("num children 0");
+    			   currNode = null;
+    		   }
+    		   else if(numChildren ==1)
+    		   {
+    			   if(currNode.mid!=null)
+    			   {
+    				   System.out.println("children 1 mid");
+    				    currNode.mid = currNode;;
+    				  // currNode.mid = null;
+    			   }
+    			   else if(currNode.left!=null)
+    			   {
+    				   currNode = currNode.left;
+    				   currNode.left = null;
+    			   }
+    			   else
+    			   {
+    				   currNode = currNode.right;
+    				   currNode.right = null;
+    			   }
+    		   }
+    		   else
+    		   {
+    			   if(currNode.mid!=null)
+    			   {
+    				   System.out.println("greater than 1 mid");
+    				   currNode = currNode.mid;
+    				   currNode.mid = null;
+    			   }
+    			   else
+    			   {
+    				   Node successorNode = getSuccessor(currNode.right);
+    				   currNode.val = successorNode.val; 
+    				   successorNode= null;
+    			   }
+    		   }
+    		}
+    	}
+           
+    }
+    
+    public void inOrderTraversal(Node root)
+    {
+    	if(root != null)
+    	{
+    		inOrderTraversal(root.left);
+        	inOrderTraversal(root.mid);
+        	System.out.println(root.val);
+        	inOrderTraversal(root.right);
+    	}
+    }
+    
+    public static void main(String[] args)
+    {
+    	Tree obj = new Tree();
+    	//5,4,9,5,7,2,2
+    	obj.insert(5);
+    	obj.insert(4);
+    	obj.insert(9);
+    	obj.insert(5);
+    	obj.insert(7);
+    	obj.insert(2);
+    	obj.insert(2);
+    	obj.delete(2);
+    	Node currNode = obj.root;
+    	obj.inOrderTraversal(currNode);
+    }
+    
+}

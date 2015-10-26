@@ -1,0 +1,21 @@
+import java.util.HashMap;
+
+
+public class StringToInteger {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		
+
+	}
+	
+	static long parseLong(String str)
+	{
+		long num =0;
+		HashMap<Integer,Integer> asciiMap = new HashMap<Integer,Integer>();
+		asciiMap.put(48, 0);
+		return num;
+	}
+
+}

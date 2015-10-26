@@ -1,0 +1,36 @@
+
+public class Solution {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public static void computeMinBal(long num ){
+		if(!isDecimal(computeLogBase3(num)))
+		{
+			double L =0.0;
+			double R = computeLogBase3(num);
+		}
+		else{
+			long weight = 1;
+			while(!isDecimal(computeLogBase3(num+weight))){
+				
+			}
+		}
+	}
+	
+	public static boolean isDecimal(double number){
+		double result = number - (int)number;
+		if(result==0.0){
+			return false;
+		}
+		return true;
+	}
+	
+	public static double computeLogBase3(long num){
+		double logVal = Math.log(num)/Math.log(3);
+		return logVal;
+	}
+
+}

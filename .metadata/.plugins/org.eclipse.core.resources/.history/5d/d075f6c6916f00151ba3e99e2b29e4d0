@@ -1,0 +1,47 @@
+import java.util.HashMap;
+
+
+public class StringToInteger {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		
+
+	}
+	
+	static long parseLong(String str)
+	{
+		long parsedNumber =0;
+		int startIndex = 0;
+        boolean isNegative = false;
+        char [] charArray = str.toCharArray();
+        for(int i=0;i<charArray.length;i++)
+        {
+        	if(charArray[i]=='-')
+        	{
+        		isNegative = true;
+        	}
+            long currCharAsciiVal = (long)str.charAt(startIndex);
+            char currChar = str.charAt(startIndex);
+            if(currCharAsciiVal>57 && currCharAsciiVal<48)
+            {
+            	//not a number 
+            	new NumberFormatException();
+            }
+        	parsedNumber *=10;
+        	parsedNumber += (currChar -'0');
+        }
+        
+        if(isNegative)
+        {
+        	parsedNumber = -parsedNumber;
+        }
+        	
+        
+        
+        return parsedNumber;
+        
+	}
+
+}
